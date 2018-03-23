@@ -2,13 +2,13 @@ const should = require('should');
 const net = require('net');
 const fs = require('fs');
 const XDag = require('../lib/xdag');
-const { parseBlock } = require('../lib/block');
+// const { parseBlock } = require('../lib/block');
 
 describe('node-xdag', () => {
 
     const socketFile = '/tmp/command_test.sock';
     var server = null;
-    console.log('parser', parseBlock);
+    // console.log('parser', parseBlock);
     before((done) => {
         if (fs.existsSync(socketFile)) {
             fs.unlinkSync(socketFile);

@@ -1,0 +1,9 @@
+List of miners:
+ NN  Address for payment to            Status   IP and port            in/out bytes      nopaid shares
+------------------------------------------------------------------------------------------------------
+ -1. YFx2i60f/GRqOxjgQagq4ug3IzSP3JX8  archive  0.0.0.0:0              0/0               0.000000
+  0. XZomlEkBFTLWYEycxr86zOrDdopONt/r  archive  125.71.100.120:19032   544/128           0.000000
+  1. XZomlEkBFTLWYEycxr86zOrDdopONt/r  active   125.71.100.120:19415   640/128           1.825498
+  2. XZomlEkBFTLWYEycxr86zOrDdopONt/r  active   125.71.100.120:19577   576/128           0.693430
+------------------------------------------------------------------------------------------------------
+Total 2 active miners.

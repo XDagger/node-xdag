@@ -36,9 +36,9 @@ describe('xdag.js', () => {
                 var command = commandStr.split(' ')[0];
                 command = command.replace('\0', '');
                 var filePath = path.join(__dirname, './mocks/' + command + '_mocks.txt');
-                console.log('filePath', filePath);
-                c.write(fs.readFileSync(filePath));
+                c.write(fs.readFileSync(filePath,'utf-8'));
                 c.end();
+
             });
         });
         server.on('error', (err) => {
@@ -85,7 +85,11 @@ describe('xdag.js', () => {
 
         it('should be get xdag stats success', (done) => {
             xdag.getStats().then((data) => {
-                console.log(data.result);
+                data.result.should.be.ok();
+                data.result.should.have.property('hosts');
+                data.result.should.have.property('blocks');
+                data.result.should.have.property('main blocks');
+                data.result.should.have.property('orphan blocks');
                 done();
             }).catch((err) => {
                 done(err);
@@ -93,6 +97,37 @@ describe('xdag.js', () => {
         })
     })
 
+    describe('#getLastBlocks', () => {
+        it('should be get last 10 blocks success', (done) => {
+            xdag.getLastBlocks(10)
+                .then((data) => {
+                    data.should.be.ok();
+                    data.result.length.should.be.equal(10);
+                    done();
+                })
+                .catch((err) => {
+                    console.error(err);
+                    done(err);
+                })
+        });
+    })
+
+    describe('#getMiners', () => {
+        it('should be get current miners success', (done) => {
+            xdag.getMiners('active')
+                .then((data) => {
+                    console.log(data.result);
+                    data.result.should.have.property('miners').which.is.an.Array();
+                    data.result.should.have.property('total').which.is.a.Number();
+                    data.should.be.ok();
+                    done();
+                })
+                .catch((err) => {
+                    console.error(err);
+                    done(err);
+                })
+        });
+    })
 
     after((done) => {
 
